@@ -10,13 +10,13 @@ class Post(models.Model):
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='post'
+        related_name='posts'
     )
     group = models.ForeignKey(
         'Group',
         blank=True, null=True,
-        on_delete=models.CASCADE,
-        related_name='group'
+        on_delete=models.SET_NULL,
+        related_name='groups'
     )
 
     def __str__(self):
@@ -29,4 +29,4 @@ class Group(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return f'{self.title}'
+        return self.title

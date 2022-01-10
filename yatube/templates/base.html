@@ -14,15 +14,12 @@
     <title>{{ title }}</title>
   </head>
   <body>
-    <header>
-      {% include 'includes/header.html' %}
-    </header>
+    {% include 'includes/header.html' %}
     <main> 
       {% block content %}
+        {% include 'includes/card_author.html' %}
       {% endblock %}
-    </main>
-    <footer class="border-top text-center py-3">       
-      {% include 'includes/footer.html' %} 
-    </footer>
+    </main>      
+    {% include 'includes/footer.html' %} 
   </body>
 </html>
