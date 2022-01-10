@@ -2,6 +2,14 @@
   {% block content %}
   <div class="container py-5">
     {% for post in posts %}
+    <ul>
+      <li>
+        Автор: {{ post.author.get_full_name }}
+      </li>
+      <li>
+        Дата публикации: {{ post.pub_date|date:"d E Y" }}
+      </li>
+    </ul>
     <p>{{ post.text }}</p>
     <p>{{ post.group }}</p>
     <a href="/group_list">все записи группы</a>
