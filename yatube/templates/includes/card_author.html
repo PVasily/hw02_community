@@ -1,0 +1,13 @@
+<ul>
+  <li>
+    Автор: {{ post.author.get_full_name }}
+  </li>
+  <li>
+    Дата публикации: {{ post.pub_date|date:"d E Y" }}
+    {% if post.group is not None %}
+      <p>{{ post.group }}</p>
+    {% else %}
+      <p>У этого поста нет сообщества</p>
+    {% endif %}
+  </li>
+</ul>
