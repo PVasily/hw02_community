@@ -4,9 +4,10 @@ from .models import Post, Group
 
 
 def index(request):
+    SHOWING_POSTS = 10
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.order_by('-pub_date')[:SHOWING_POSTS]
     context = {
         'posts': posts,
         'title': title
@@ -15,9 +16,10 @@ def index(request):
 
 
 def group_post(request, slug):
+    SHOWING_POSTS = 10
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group)[:10]
+    posts = Post.objects.filter(group=group)[:SHOWING_POSTS]
     title = f'Вы в сообществе {group}'
     context = {
         'group': group,
