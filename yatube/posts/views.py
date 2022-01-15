@@ -3,8 +3,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
 
 
+SHOWING_POSTS = 10
+
+
 def index(request):
-    SHOWING_POSTS = 10
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
     posts = Post.objects.order_by('-pub_date')[:SHOWING_POSTS]
@@ -16,12 +18,17 @@ def index(request):
 
 
 def group_post(request, slug):
-    SHOWING_POSTS = 10
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
     posts = Post.objects.filter(group=group)[:SHOWING_POSTS]
     title = f'Вы в сообществе {group}'
+    description = ''
+    for post in posts:
+        if post.group.description is not None:
+            description += post.group.description
+            break
     context = {
+        'description': description,
         'group': group,
         'title': title,
         'posts': posts
