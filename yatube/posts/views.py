@@ -21,7 +21,7 @@ def group_post(request, slug):
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
     posts = Post.objects.filter(group=group)[:SHOWING_POSTS]
-    title = f'Вы в сообществе {group}'
+    title = f'Записи сообщества {group}'
     description = group.description
     context = {
         'description': description,
