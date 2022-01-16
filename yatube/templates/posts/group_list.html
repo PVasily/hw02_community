@@ -5,7 +5,7 @@
     <h1>{{ group }}</h1>
     <p>{{ description }}</p>
     {% for post in posts %}
-      {% include 'includes/card_author.html' %}
+      {% include 'includes/post_card.html' %}
       {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
   </div>

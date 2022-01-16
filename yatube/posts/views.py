@@ -22,11 +22,7 @@ def group_post(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = Post.objects.filter(group=group)[:SHOWING_POSTS]
     title = f'Вы в сообществе {group}'
-    description = ''
-    for post in posts:
-        if post.group.description is not None:
-            description += post.group.description
-            break
+    description = group.description
     context = {
         'description': description,
         'group': group,
